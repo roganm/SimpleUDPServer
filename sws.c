@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     exit(1);
   }
  
-  // work arguments into variable
+  // work arguments into variables
   port = malloc(strlen(argv[1]) + 1);
   strncpy(port, argv[1], strlen(argv[1]) + 1); 
   port_num = (atoi(port));
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     exit(1);
   }
 
-  // setup the socket
+  // setup the socket address and port
   memset(&sa, 0, sizeof sa);
   sa.sin_family = AF_INET;
   sa.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
     timeout.tv_sec = 2;
     timeout.tv_usec = 0;
     
-    //select the descriptor with something in its buffer
+    // select the file descriptor with something in its buffer
     result = select(max_desc + 1, &f_descs, NULL, NULL, &timeout);
 
     if (FD_ISSET(sock, &f_descs)) {
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
       // process response
       respond(request, sock, sa);  
                
-      // get the incoming IP
+      // get the IP for logging
       inet_ntop(AF_INET, &sa.sin_addr, ip, sizeof(ip));
       
       // log the result
@@ -182,7 +182,7 @@ void respond(struct in_request* request, int sock, struct sockaddr_in sa){
       break;
   }
 
-  // now send the first part
+  // now send the response header
   bytes_sent = sendto(sock, (void*)response, strlen(response), 0, (struct sockaddr*)&sa, sizeof sa);
 
   if (bytes_sent < 0) {
