@@ -142,6 +142,12 @@ int main(int argc, char *argv[])
   }
 }
 
+/*
+ * respond()
+ * Takes as input the struct, and socket data
+ * then determines the appropraite response and
+ * delivers it along with the file if necessary.
+ */
 void respond(struct in_request* request, int sock, struct sockaddr_in sa){
   int bytes_sent;
   char* response;
@@ -202,6 +208,11 @@ void respond(struct in_request* request, int sock, struct sockaddr_in sa){
   }
 }
 
+/*
+ * log()
+ * Takes as input the struct, ip and port
+ * and produces the console log output
+ */
 void log(const struct in_request* request, const char* ip, const char* port){
   
   time_t t = time(NULL);
@@ -280,6 +291,12 @@ void log(const struct in_request* request, const char* ip, const char* port){
   printf("%s %02d %02d:%02d:%02d %s:%s %s %s %s; %s; %s\n", mon, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, ip, port, request->type, request->file, protocol, res, request->file_path);
 }
 
+/*
+ * parse_request()
+ * Takes the buffered request and directory being served
+ * and builds up the struct with the parsed data.
+ * Returns a struct with all the relevant data for the response
+ */
 struct in_request* parse_request(const char* origin_request, const char* dir){
   char* request_copy;
   char* type;
