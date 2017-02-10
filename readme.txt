@@ -13,6 +13,7 @@ sws.h
 makefile
 readme.txt
 testcases.sh
+p1.pdf
 
 ======================
 Description
