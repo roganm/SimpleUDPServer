@@ -129,10 +129,10 @@ int main(int argc, char *argv[])
       
       // if instead it was the sandard input, lets handle that
       
-      //get what was input through stdin
+      // get what was input through stdin
       fgets(buffer, 100, stdin);
       
-      //check if it was a q, and if it was, terminate the server
+      // check if it was a q, and if it was, terminate the server
       if (!strncmp(buffer, "q\n", 2)){
         printf("Server terminated by user...\n");
         close(sock);
@@ -291,10 +291,6 @@ struct in_request* parse_request(const char* origin_request, const char* dir){
   
   // allocate the memory for the struct
   request = malloc(sizeof(struct in_request));
-  
-  // allocate and copy in the original request
-  request->request = malloc(strlen(origin_request) + 1);
-  strncpy(request->request, origin_request, strlen(origin_request) + 1);
   
   // allocate and copy the original request for break down
   request_copy = malloc(strlen(origin_request) + 1);

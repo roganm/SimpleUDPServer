@@ -19,13 +19,13 @@
 
 // buffer size
 #define BUFFER_SIZE 4096
+
 #define TRUE 1
 #define FALSE 0
 
 // main data struct
 struct in_request {
   int   status;
-  char* request;
   char* type;
   char* file;
   char* file_path;
