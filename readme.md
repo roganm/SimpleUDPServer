@@ -1,6 +1,8 @@
-Rogan McNeill
+## Simple UDP Server
+Author: Rogan McNeill
 
-CSC 361 Section B01
+### Made For
+CSC 361
 Winter 2017
 
 ### Files
